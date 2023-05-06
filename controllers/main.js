@@ -1,5 +1,5 @@
 const { use } = require('../routes/main');
-const CustomAPIError = require('../errors/custom-error');
+const { BadRequestError } = require('../errors/custom-error');
 const jwt = require('jsonwebtoken');
 
 const login = async (req, res) => {
@@ -8,7 +8,7 @@ const login = async (req, res) => {
   // console.log(username, password, res.body);
 
   if (!username || !password) {
-    throw new CustomAPIError('Please provide username and password', 400);
+    throw new BadRequestError('Please provide username and password');
   }
 
   const id = new Date().getTime(); //Normally provided by DB
